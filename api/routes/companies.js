@@ -13,6 +13,7 @@ const companies = require(jsonFile);
 // generate an id for each company
 companies.forEach((company) => {
   company.id = shortId.generate();
+  company.notes = '';
 });
 
 // sort by ids
