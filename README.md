@@ -33,5 +33,8 @@ TODO
 
 ## Resources
 [react-bootstrap](https://react-bootstrap.github.io)
+
 [redux-axios-middleware](https://github.com/svrcekmichal/redux-axios-middleware)
+
 [redux-minimal](https://github.com/catalin-luntraru/redux-minimal)
+
