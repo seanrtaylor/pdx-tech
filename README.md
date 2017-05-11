@@ -1,26 +1,48 @@
 # pdx-tech
 
-A simple react/redux app for rating local tech businesses
+A simple react/redux app for viewing and rating local tech businesses
 
 ## Installation
 
-Install dependencies:
+Install front-end dependencies:
 ```
 npm install
 ```
 
+Install api dependencies:
+```
+cd api
+npm install
+```
+
 ## Run the app
+
 Start a development webserver:
 ```
 npm start
 ```
-Open your browser to http://localhost:3000
+
+Start the api
+```
+cd api
+npm start
+```
+
+Open your browser to http://localhost:8080
+
 
 ## Testing
+
 Running unit tests:
 ```
 npm test
 ```
+Run api tests:
+```
+cd api
+npm test
+```
+
 Running tests and generating code coverage reports:
 ```
 npm run cover
