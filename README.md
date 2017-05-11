@@ -1,6 +1,6 @@
 # pdx-tech
 
-A simple react/redux app for viewing and rating local tech businesses
+A react/redux app for viewing and rating local tech businesses
 
 ## Installation
 
