@@ -51,7 +51,7 @@ This will generate a code coverage report which can be viewed by opening `./cove
 
 ## Features
 
-TODO
+* Test API with CRUD for companies list
 
 ## Resources
 [react-bootstrap](https://react-bootstrap.github.io)
