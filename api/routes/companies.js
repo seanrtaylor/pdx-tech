@@ -28,7 +28,12 @@ fs.writeFile(__dirname + '/' + jsonFile, JSON.stringify(companies, undefined, 2)
 
 // GET companies list
 router.get('/', function(req, res) {
-  res.status(200).json(companies).end();
+  const sortedCompanies = [].concat(companies);
+  //sort by name
+  sortedCompanies.sort((a, b) => {
+    return a.name.localeCompare(b.name);
+  });
+  res.status(200).json(sortedCompanies).end();
 });
 
 // POST create a new company
