@@ -49,6 +49,13 @@ npm run cover
 ```
 This will generate a code coverage report which can be viewed by opening `./coverage/lcov-report/index.html` in your browser.
 
+## Todos
+
+* Create should do a form post
+* Sorting
+* Pagination
+
+
 ## Features
 
 * Test API with CRUD for companies list
