@@ -38,6 +38,12 @@ router.get('/', function(req, res) {
 
 // POST create a new company
 router.post('/', function(req, res) {
+  if (!_.isPlainObject(req.body)){
+    return res.status(400).end();
+  }
+  if (_.keys(req.body).length < 1){
+    return res.status(400).end();
+  }
   const newCompany = _.assign({ name: '', notes: '', url: ''}, req.body);
   newCompany.id = shortId.generate();
   companies.push(newCompany);

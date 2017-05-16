@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "cover": "nyc mocha --opts ./mocha.opts \"./tests/*.js\"",
     "start": "node ./app.js",
     "test": "mocha --opts ./mocha.opts './tests/*.js'"
   },
@@ -21,6 +22,43 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^3.3.0",
+    "nyc": "^10.3.2",
     "supertest": "^3.0.0"
+  },
+  "nyc": {
+    "lines": [
+      50,
+      80
+    ],
+    "statements": [
+      50,
+      80
+    ],
+    "functions": [
+      50,
+      80
+    ],
+    "branches": [
+      50,
+      80
+    ],
+    "include": [
+      "app.js",
+      "routes/companies.js"
+    ],
+    "exclude": [
+      "**/tests/*.js"
+    ],
+    "require": [
+      "babel-register"
+    ],
+    "extension": [
+      ".js"
+    ],
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "check-coverage": true
   }
 }

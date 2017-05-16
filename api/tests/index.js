@@ -25,6 +25,16 @@ describe('api', function(){
     });
   });
 
+  describe('404', function() {
+    it('GET should respond with a 404 when requesting an unknown path', function(done) {
+      request(app)
+        .get('/unknown')
+        .set('Accept', 'application/json')
+        .expect(404)
+        .end(done);
+    });
+  });
+
   describe('/companies', function() {
     it('GET should respond with a list of companies', function(done) {
       request(app)
@@ -65,6 +75,23 @@ describe('api', function(){
 
     });
 
+    it('POST should return an error if posting invalid body', function(done){
+      request(app)
+        .post('/companies')
+        .send([])
+        .set('Accept', 'application/json')
+        .expect(400)
+        .end(done);
+    });
+
+    it('POST should return an error if posting empty body', function(done){
+      request(app)
+        .post('/companies')
+        .send({})
+        .set('Accept', 'application/json')
+        .expect(400)
+        .end(done);
+    });
   });
 
   describe('/companies/:id', function() {
@@ -80,6 +107,13 @@ describe('api', function(){
         }).end(done);
     });
 
+    it('GET should respond with a 404 if company does not exist', function(done) {
+      request(app)
+        .get('/companies/' + 42)
+        .set('Accept', 'application/json')
+        .expect(404)
+        .end(done);
+    });
 
     it('PUT should update a company', function(done) {
       const company = _.clone(companies[0]);
@@ -102,6 +136,15 @@ describe('api', function(){
         });
     });
 
+    it('PUT should respond with a 404 if company does not exist', function(done) {
+      request(app)
+        .put('/companies/' + 42)
+        .send({ name: 'does-not-exist' })
+        .set('Accept', 'application/json')
+        .expect(404)
+        .end(done);
+    });
+
     it('DEL should delete a new company', function(done){
       const id = companies[0].id;
       request(app)
@@ -113,6 +156,14 @@ describe('api', function(){
           expect(_.isPlainObject(res.body)).to.be.true;
           expect(res.body.id).to.eql(id);
         }).end(done);
+    });
+
+    it('DEL should respond with a 404 if company does not exist', function(done) {
+      request(app)
+        .del('/companies/' + 42)
+        .set('Accept', 'application/json')
+        .expect(404)
+        .end(done);
     });
   });
 });

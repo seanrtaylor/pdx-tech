@@ -25,12 +25,14 @@ app.use('/companies/', companies);
 app.use(function(req, res, next) {
   const err = new Error('Not Found', req.url);
   err.status = 404;
+  err.stack = '';
   next(err);
 });
 
 // error handler
+/* istanbul ignore next */
 app.use(function(err, req, res) {
-  logger.error('error', err, req.url);
+  logger.error('Error', err, req.url);
   res.status(err.status || 500);
   const resp = {};
   if (!isProdEnv){
@@ -42,8 +44,8 @@ app.use(function(err, req, res) {
 const server = http.createServer(app);
 
 //if this is the main executing module, start server
+/* istanbul ignore if */
 if (require.main === module ){
-
   server.listen(app.get('port'));
   logger.log('listening on port ', app.get('port'));
 } else {
