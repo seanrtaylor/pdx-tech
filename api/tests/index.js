@@ -95,6 +95,39 @@ describe('api', function(){
     });
   });
 
+  describe('/companies/:id/votes', function() {
+    it('POST should increment a score ', function(done){
+      const id = companies[0].id;
+      const score = companies[0].score;
+      request(app)
+        .post('/companies/' + id + '/votes/up')
+        .send({})
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .expect(function(res){
+          expect(_.isPlainObject(res.body)).to.be.true;
+          expect(res.body.score).to.be.gt(score);
+        }).end(done);
+    });
+
+    it('POST should decrement a score ', function(done){
+      const id = companies[0].id;
+      const score = companies[0].score;
+      request(app)
+        .post('/companies/' + id + '/votes/down')
+        .send({})
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .expect(function(res){
+          expect(_.isPlainObject(res.body)).to.be.true;
+          expect(res.body.score).to.be.lt(score);
+        })
+        .end(done);
+    });
+  });
+
   describe('/companies/:id', function() {
     it('GET should respond with a company', function(done) {
       request(app)
@@ -167,4 +200,6 @@ describe('api', function(){
         .end(done);
     });
   });
+
+
 });

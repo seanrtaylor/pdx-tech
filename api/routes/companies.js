@@ -89,4 +89,24 @@ router.delete('/:id', function(req, res) {
   return res.status(404).end();
 });
 
+// POST vote for a company
+router.post('/:id/votes/:dir', function(req, res) {
+  let dir;
+  if (_.isString(req.params.dir)){
+    dir = req.params.dir.toLowerCase();
+  }
+  const match = _.find(companies, { id: req.params.id });
+  if (match){
+    if (dir === 'up'){
+      match.score += 1;
+    } else if (dir === 'down'){
+      match.score -= 1;
+    } else {
+      return res.status(400).end();
+    }
+    return res.status(200).json({ score: match.score });
+  }
+  return res.status(404).end();
+});
+
 module.exports = router;
