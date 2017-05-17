@@ -91,10 +91,7 @@ router.delete('/:id', function(req, res) {
 
 // POST vote for a company
 router.post('/:id/votes/:dir', function(req, res) {
-  let dir;
-  if (_.isString(req.params.dir)){
-    dir = req.params.dir.toLowerCase();
-  }
+  const dir = req.params.dir.toLowerCase();
   const match = _.find(companies, { id: req.params.id });
   if (match){
     if (dir === 'up'){

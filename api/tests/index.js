@@ -126,6 +126,25 @@ describe('api', function(){
         })
         .end(done);
     });
+
+    it('POST should respond with a 400 if invalid vote is neither up or down', function(done){
+      const id = companies[0].id;
+      request(app)
+        .post('/companies/' + id + '/votes/foo')
+        .send({})
+        .set('Accept', 'application/json')
+        .expect(400)
+        .end(done);
+    });
+
+    it('POST should respond with a 404 if company does not exist', function(done) {
+      request(app)
+        .post('/companies/42/votes/up')
+        .set('Accept', 'application/json')
+        .expect(404)
+        .end(done);
+    });
+
   });
 
   describe('/companies/:id', function() {
