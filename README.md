@@ -2,6 +2,24 @@
 
 A react/redux app for viewing and rating local tech businesses
 
+This is a both a teaching and a learning exercise.
+
+The master branch contains the base level implementation, but it is incomplete.
+You should create a new branch to contain your work.
+
+On the master branch, you will find a working crud api for companies, a scaffolded web app, and an initial action creator
+for requesting a list of companies.
+
+You'll need to create the CompaniesList component and map the new action to the component props.
+When you call the action in ComponentDidMount, Axios-Middleware will emit actions for
+GET_COMPANIES_REQUEST, *_SUCCESS, *_FAILURE.  Write a companies-reducer to handle that (don't forget to add your new reducer to combine reducers).
+You can then connect your CompaniesList component to the redux store and map the data to props.
+At this point you should be able to write a dumb Company component and start displaying that data.
+
+You should then provide a mechanism for creating a new company, editing an existing company, and voting a company up or down.
+
+Good luck, but you totally got this. Don't hesitate to ask questions.
+
 ## Installation
 
 Install front-end dependencies:
@@ -49,17 +67,6 @@ npm run cover
 ```
 This will generate a code coverage report which can be viewed by opening `./coverage/lcov-report/index.html` in your browser.
 
-## Todos
-
-* Create should do a form post
-* Sorting
-* Pagination
-
-
-## Features
-
-* Test API with CRUD for companies list
-
 ## Resources
 [react-bootstrap](https://react-bootstrap.github.io)
 
@@ -67,3 +74,4 @@ This will generate a code coverage report which can be viewed by opening `./cove
 
 [redux-minimal](https://github.com/catalin-luntraru/redux-minimal)
 
+[redux-form](http://redux-form.com)
