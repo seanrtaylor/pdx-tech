@@ -10,10 +10,11 @@ const jsonFile = '../data/companies.json';
 const companies = require(jsonFile);
 
 /*
-// generate an id for each company
+//initialize companies
 companies.forEach((company) => {
   company.id = shortId.generate();
   company.notes = '';
+  company.score = 0;
 });
 
 // sort by ids
@@ -25,15 +26,16 @@ companies.sort((a, b) => {
 fs.writeFile(__dirname + '/' + jsonFile, JSON.stringify(companies, undefined, 2), 'utf8');
 */
 
-
 // GET companies list
 router.get('/', function(req, res) {
-  const sortedCompanies = [].concat(companies);
-  //sort by name
-  sortedCompanies.sort((a, b) => {
-    return a.name.localeCompare(b.name);
+
+  const sortedCompanies = [].concat(companies).sort((a, b) => {
+    const aName = a.name.toLowerCase();
+    const bName = b.name.toLowerCase();
+    return aName.localeCompare(bName);
   });
-  res.status(200).json(sortedCompanies).end();
+
+  res.status(200).json(_.orderBy(sortedCompanies, ['score', 'name'])).end();
 });
 
 // POST create a new company
@@ -44,10 +46,10 @@ router.post('/', function(req, res) {
   if (_.keys(req.body).length < 1){
     return res.status(400).end();
   }
-  const newCompany = _.assign({ name: '', notes: '', url: ''}, req.body);
+  const newCompany = _.assign({ name: '', notes: '', score: 0, url: ''}, req.body);
   newCompany.id = shortId.generate();
   companies.push(newCompany);
-  return res.status(200).json({ id: newCompany.id });
+  return res.status(200).json(newCompany);
 });
 
 // GET a specific company
@@ -66,7 +68,7 @@ router.put('/:id', function(req, res) {
 
     //Update the match in memory
     //NOTE: these aren't persisted to disk
-    ['name', 'notes', 'url'].forEach( (key) => {
+    ['name', 'notes', 'score', 'url'].forEach( (key) => {
       if (key in req.body){
         match[key] = req.body[key];
       }

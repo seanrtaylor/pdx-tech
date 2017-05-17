@@ -52,6 +52,7 @@ describe('api', function(){
       const company = {
         name: 'foo',
         notes: '',
+        score: 0,
         url: 'http://test.com'
       };
 
