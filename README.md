@@ -11,12 +11,18 @@ On the master branch, you will find a working crud api for companies, a scaffold
 for requesting a list of companies.
 
 You'll need to create the CompaniesList component and map the new action to the component props.
+
 When you call the action in ComponentDidMount, Axios-Middleware will emit actions for
-GET_COMPANIES_REQUEST, *_SUCCESS, *_FAILURE.  Write a companies-reducer to handle that (don't forget to add your new reducer to combine reducers).
+GET_COMPANIES_REQUEST, *_SUCCESS, *_FAILURE.
+Write a companies-reducer to handle these actions.
+Don't forget to add your new reducer to combine reducers.
+
 You can then connect your CompaniesList component to the redux store and map the data to props.
 At this point you should be able to write a dumb Company component and start displaying that data.
 
 You should then provide a mechanism for creating a new company, editing an existing company, and voting a company up or down.
+
+The api is full tested. If you aren't sure about how to use the api, look at api/tests.
 
 Good luck, but you totally got this. Don't hesitate to ask questions.
 
