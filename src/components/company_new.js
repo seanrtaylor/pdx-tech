@@ -36,7 +36,7 @@ class CompanyNew extends Component {
 //redux-form: first arg is config, 2 mstp, 3, mdtp
 
 CompanyNew = reduxForm({
-  form: 'company-new'
+  form: 'CompanyNew'
 })(CompanyNew)
 
 export default CompanyNew;
