@@ -11,6 +11,7 @@ module.exports = {
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
     'babel-polyfill',
+    'react-hot-loader/patch',
     __dirname + '/' + app_root + '/index.js',
   ],
   output: {
@@ -22,7 +23,7 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loaders: ['react-hot', 'babel'],
+        loaders: ['react-hot-loader/webpack', 'babel'],
         exclude: /node_modules/,
       },
       {

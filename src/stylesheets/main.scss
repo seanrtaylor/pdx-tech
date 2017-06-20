@@ -1,1 +1,43 @@
 @import "~normalize.css/normalize";
+
+.company-card {
+  background-color: #BCE9F7;
+  border-left: solid;
+  margin-bottom:25px;
+  padding-left:10px;
+  padding: 2px 10px 10px 10px;
+
+}
+
+.company-name {
+  text-align: center;
+}
+
+.company-url {
+  text-align: left;
+  position: absolute;
+  bottom: 32px;
+}
+
+.company-score {
+  text-align: right;
+
+  .thumbs {
+    .icon-one{
+      padding-bottom:0px !important;
+      margin-bottom:0px !important;
+      font-size:20px;
+    }
+    .icon-two{
+      font-size:20px;
+    }
+    .fa {
+      cursor:pointer;
+    }
+
+  }
+}
+
+.company-card-footer {
+
+}
