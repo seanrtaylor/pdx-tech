@@ -2,9 +2,7 @@ import React from 'react';
 import CompanyItem from './company_item';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getCompanies, createCompany } from '../actions/companies';
-import { Link } from 'react-router';
-import { upVoteCompany, downVoteCompany } from '../actions/index';
+import { getCompanies, createCompany, upVoteCompany, downVoteCompany } from '../actions/companies';
 
 
 class Company extends React.Component {
@@ -33,10 +31,6 @@ class Company extends React.Component {
     return (
       <div>
         <div className="text-xs-right">
-          <Link to="/company/new" className="btn btn-primary">
-            Add New Company
-          </Link>
-
           <div>
             { this.props.company.map(this.renderCompany) }
           </div>

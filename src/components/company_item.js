@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Col } from 'react-bootstrap';
 
 
-export default class CompanyItem extends React.Component {
+class CompanyItem extends React.Component {
   constructor(props) {
         super(props);
         this.upVoteCompany = this.upVoteCompany.bind(this);
@@ -12,14 +12,12 @@ export default class CompanyItem extends React.Component {
     }
 
   upVoteCompany(event) {
-        console.log(event);
         this.props.upVoteCompany(this.props.company);
     }
 
-    downVoteCompany(event) {
-          console.log(event);
-          this.props.downVoteCompany(this.props.company);
-      }
+  downVoteCompany(event) {
+        this.props.downVoteCompany(this.props.company);
+    }
 
   render() {
     return (
@@ -50,3 +48,5 @@ export default class CompanyItem extends React.Component {
     );
   }
 }
+
+export default connect()(CompanyItem);

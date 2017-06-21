@@ -1,8 +1,7 @@
-import { COMPANIES_URL, GET_COMPANIES  } from '../constants';
+import { COMPANIES_URL, GET_COMPANIES, CREATE_COMPANY, UPVOTE_COMPANY  } from '../constants';
 import axios from 'axios';
 
 export const ROOT_URL = 'http://127.0.0.1:3000/companies'
-export const CREATE_COMPANY = 'CREATE_COMPANY'
 
 let nextTodoId = 1;
 
@@ -24,13 +23,16 @@ export function createCompany(props){
   return {
     type: CREATE_COMPANY,
     payload: request
-
   };
 }
 
 export function upVoteCompany(company){
-  console.log('in upvote', company);
+  //const request = axios.put(`${ROOT_URL}/${company.id}`, company);
+  return {
+    type: UPVOTE_COMPANY
+  };
 }
+
 
 export function downVoteCompany(company){
   console.log('in downvote', company);

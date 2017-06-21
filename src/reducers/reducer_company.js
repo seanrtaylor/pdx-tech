@@ -1,4 +1,4 @@
-import { COMPANIES_URL, GET_COMPANIES, CREATE_COMPANY } from '../actions/index';
+import { COMPANIES_URL, GET_COMPANIES, CREATE_COMPANY, UPVOTE_COMPANY } from '../actions/index';
 import { GET_COMPANIES_SUCCESS, GET_COMPANIES_FAIL } from '../constants';
 
 const INITIAL_STATE = { all: [], company: null};
@@ -14,7 +14,6 @@ export default function(state = [], action) {
         }
         return company;
       });
-
       return [action.payload.data, ...state];
 
 
@@ -24,6 +23,10 @@ export default function(state = [], action) {
 
     case CREATE_COMPANY:
       return [action, ...state];
+
+    case UPVOTE_COMPANY:
+      console.log("hi");
+        return [state = {}];
   }
   return state;
 }
