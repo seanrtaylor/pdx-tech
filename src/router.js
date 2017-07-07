@@ -5,6 +5,7 @@ import App from "./components/App";
 import Home from "./components/Home";
 import NotFound from "./components/NotFound";
 import CompanyNew from './components/company_new';
+import CompanyEdit from './components/company_edit';
 
 // build the router
 const router = (
@@ -12,6 +13,7 @@ const router = (
     <Route path="/" component={App}>
       <IndexRoute component={Home}/>
       <Route path="company/new" component={CompanyNew}/>
+      <Route path="company/:id" component={CompanyEdit}/>
       <Route path="*" component={NotFound}/>
     </Route>
   </Router>

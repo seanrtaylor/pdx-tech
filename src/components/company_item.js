@@ -1,52 +1,75 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Col } from 'react-bootstrap';
+import React, { Component } from 'react';
+import CompanyEdit from './company_edit';
+import { Col, Modal, Button } from 'react-bootstrap';
+import { Field } from 'redux-form';
+import { Link } from 'react-router';
 
 
-class CompanyItem extends React.Component {
+//render for form fields
+ const renderInput = field =>
+   <div>
+     <input {...field.input} type="field.type"/>
+     {field.meta.touched && field.meta.error &&
+     <span className="error"> {field.meta.error}</span>}
+   </div>
+
+
+export default class CompanyItem extends Component {
   constructor(props) {
-        super(props);
-        this.upVoteCompany = this.upVoteCompany.bind(this);
-        this.downVoteCompany = this.downVoteCompany.bind(this);
-    }
+      super(props);
+      this.state = {showModal: false};
+      this.closeEditModal = this.closeEditModal.bind(this);
+      this.openEditModal = this.openEditModal.bind(this);
+  }
 
-  upVoteCompany(event) {
-        this.props.upVoteCompany(this.props.company);
-    }
+  //close and open for modal
+  closeEditModal(){
+    this.setState({ showModal: false });
+  }
 
-  downVoteCompany(event) {
-        this.props.downVoteCompany(this.props.company);
-    }
+  openEditModal(){
+    this.setState({ showModal: true });
+  }
 
   render() {
     return (
           <Col xs={6} md={4}>
             <div className="company-card">
-              <div className="company-name">
-                <h4>{this.props.company.name}</h4>
+              <Link to={`/company/${this.props.company.id}`}>
+                <div className="company-name" onClick={this.props.handleActiveCompany}>
+                  <h4>{this.props.company.name}</h4>
+                </div>
+              </Link>
+
+              <div className="edit-pencil">
+                  <i className="fa fa-pencil" onClick={this.openEditModal} aria-hidden="true"></i> Edit
               </div>
                 <div className="company-card-footer">
                   <div className="company-url">
                     <i className="fa fa-globe" aria-hidden="true"></i>
-                    <a href={this.props.company.url}> Website </a>
+                    <a href={this.props.company.url}> Website</a>
                   </div>
                   <div className="company-score">
                     <div className="thumbs">
-                      <div className="icon-one">
-                        <i className="fa fa-thumbs-o-up" onClick={this.upVoteCompany} aria-hidden="true"></i>
-                      </div>
-                      <div className="icon-two">
-                        <i className="fa fa-thumbs-o-down" onClick={this.downVoteCompany} aria-hidden="true"></i>
-                      </div>
+                        <i className="fa fa-thumbs-o-up" onClick={this.props.handleUpVote} aria-hidden="true"></i>
+                        <i className="fa fa-thumbs-o-down" onClick={this.props.handleDownVote} aria-hidden="true"></i>
                     </div>
                     Score: {this.props.company.score}
                   </div>
                 </div>
               </div>
+              <Modal show={this.state.showModal} onHide={this.closeEditModal}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Details for {this.props.company.name}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <CompanyEdit singleCompany={this.props.company}/>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button onClick={this.closeEditModal}>Close</Button>
+                </Modal.Footer>
+              </Modal>
           </Col>
     );
   }
 }
-
-export default connect()(CompanyItem);

@@ -1,12 +1,11 @@
-import { COMPANIES_URL, GET_COMPANIES, CREATE_COMPANY, UPVOTE_COMPANY  } from '../constants';
+import { COMPANIES_URL, GET_COMPANIES, GET_COMPANY, CREATE_COMPANY, UPVOTE_COMPANY, UPDATE_COMPANY  } from '../constants';
 import axios from 'axios';
 
-export const ROOT_URL = 'http://127.0.0.1:3000/companies'
+export const ROOT_URL = 'http://127.0.0.1:3000/companies/'
 
 let nextTodoId = 1;
 
-
-
+//get all companies
 export function getCompanies(){
   return {
     type: GET_COMPANIES,
@@ -18,6 +17,21 @@ export function getCompanies(){
   };
 }
 
+//increase or decrease a companies score
+export function voteCompany(updatedCompany, direction){
+  return {
+    type: UPVOTE_COMPANY,
+    payload: {
+      request: {
+        method: 'POST',
+        url: `${ROOT_URL}${updatedCompany.id}/votes/${direction}`
+      },
+      updatedCompany
+    }
+  };
+}
+
+//make a new company
 export function createCompany(props){
   const request = axios.post(`${ROOT_URL}`, props);
   return {
@@ -26,14 +40,17 @@ export function createCompany(props){
   };
 }
 
-export function upVoteCompany(company){
-  //const request = axios.put(`${ROOT_URL}/${company.id}`, company);
+//edit a company
+export function editCompany(updatedCompany){
+  console.log('in edit company action for', updatedCompany);
   return {
-    type: UPVOTE_COMPANY
+    type: UPDATE_COMPANY,
+    payload: {
+      request: {
+        method: 'PUT',
+        url: `${ROOT_URL}${updatedCompany.id}`
+      },
+      updatedCompany
+    }
   };
-}
-
-
-export function downVoteCompany(company){
-  console.log('in downvote', company);
 }

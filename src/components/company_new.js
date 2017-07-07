@@ -35,7 +35,7 @@ class CompanyNew extends Component {
 
         <div className="form-group">
           <label>Website Url</label>
-          <Field name="url" component={renderInput} type="text" />
+          <Field name="url" component={renderInput} type="text"/>
         </div>
         <div className="text-help">
           {name.touched ? url.error : ''}
@@ -70,9 +70,6 @@ function validate(values) {
     }
     return errors;
 }
-
-//connect: first arg is mstp, second is mdtp,
-//redux-form: first arg is config, 2 mstp, 3, mdtp
 
 CompanyNew = reduxForm({
   form: 'CompanyNew',

@@ -3,11 +3,14 @@ import { browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
 import freeze from 'redux-freeze';
 import axios from 'axios';
+import ReduxPromise from 'redux-promise';
 import axiosMiddleware from 'redux-axios-middleware';
 import { createLogger } from 'redux-logger';
 
 import { API_URL } from './constants';
 import { reducers } from './reducers/index';
+
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 const apiClient = axios.create({
   baseURL: API_URL,
@@ -29,6 +32,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 middlewares.push(axiosMiddleware(apiClient));
+middlewares.push(ReduxPromise);
 
 // apply the middleware
 let middleware = applyMiddleware(...middlewares);
