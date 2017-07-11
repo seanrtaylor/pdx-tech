@@ -19,9 +19,7 @@ class CompanyNew extends Component {
   }
 
   render () {
-
     const { handleSubmit } = this.props;
-
     return (
       <form onSubmit={ handleSubmit(this.onFormSubmit.bind(this)) }>
         <h2> Add New Tech Company </h2>
@@ -50,7 +48,6 @@ class CompanyNew extends Component {
         </div>
 
         <button type="submit" className="btn btn-primary">Submit</button>
-        <Link to="/" className="btn btn-success"> Back To List </Link>
       </form>
     );
   }

@@ -31,12 +31,19 @@ export function voteCompany(updatedCompany, direction){
   };
 }
 
+
 //make a new company
-export function createCompany(props){
-  const request = axios.post(`${ROOT_URL}`, props);
+export function createCompany(newCompany){
+  console.log('new company is', newCompany)
   return {
     type: CREATE_COMPANY,
-    payload: request
+    payload: {
+      request: {
+        method: 'POST',
+        url: COMPANIES_URL,
+        data: newCompany
+      },
+    }
   };
 }
 

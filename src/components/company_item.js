@@ -41,8 +41,8 @@ export default class CompanyItem extends Component {
                 </div>
               </Link>
 
-              <div className="edit-pencil">
-                  <i className="fa fa-pencil" onClick={this.openEditModal} aria-hidden="true"></i> Edit
+              <div className="edit-pencil" onClick={this.openEditModal}>
+                  <i className="fa fa-pencil" aria-hidden="true"></i> Edit
               </div>
                 <div className="company-card-footer">
                   <div className="company-url">

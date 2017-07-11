@@ -1,4 +1,4 @@
-import { GET_COMPANIES_SUCCESS, UPVOTE_COMPANY_SUCCESS, UPVOTE_COMPANY_FAIL, GET_COMPANIES_FAIL, CREATE_COMPANY, UPVOTE_COMPANY, GET_COMPANY_SUCCESS, GET_COMPANY_FAIL, UPDATE_COMPANY_SUCCESS  } from '../constants';
+import { GET_COMPANIES_SUCCESS, UPVOTE_COMPANY_SUCCESS, UPVOTE_COMPANY_FAIL, GET_COMPANIES_FAIL, CREATE_COMPANY_SUCCESS, CREATE_COMPANY_FAIL, UPVOTE_COMPANY, GET_COMPANY_SUCCESS, GET_COMPANY_FAIL, UPDATE_COMPANY_SUCCESS  } from '../constants';
 
 const INITIAL_STATE = { all: [], company: null};
 
@@ -21,8 +21,14 @@ export default function(state = [], action) {
       break;
 
     //create company success
-    case CREATE_COMPANY:
-      return [action, ...state];
+    case CREATE_COMPANY_SUCCESS:
+      console.log(action.payload);
+      return [action.payload.data, ...state];
+
+    //create company success
+    case CREATE_COMPANY_FAIL:
+      console.log('fail');
+      break;
 
     //upvote fail
     case UPVOTE_COMPANY_FAIL:

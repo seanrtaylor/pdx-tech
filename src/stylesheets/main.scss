@@ -25,6 +25,9 @@
   bottom: 32px;
 }
 
+.fa {
+  cursor:pointer;
+}
 
 .company-score {
   text-align: right;
@@ -43,10 +46,6 @@
         color:red;
       }
     }
-    .fa {
-      cursor:pointer;
-    }
-
   }
 }
 
@@ -56,4 +55,5 @@
 
 .edit-pencil {
   float:left;
+  cursor:pointer;
 }

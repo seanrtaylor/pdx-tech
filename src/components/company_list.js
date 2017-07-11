@@ -1,5 +1,6 @@
 import React from 'react';
 import CompanyItem from './company_item';
+import CompanyHeader from './company_header';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getCompanies, createCompany, voteCompany, downVoteCompany, setActiveCompany } from '../actions/companies';
@@ -36,20 +37,25 @@ class Company extends React.Component {
   render() {
     return (
       <div>
-        <div className="text-xs-right">
-          <div>
-            {this.props.company.map((singleCompany) => {
-              return (
-                <CompanyItem
-                  key={singleCompany.id}
-                  company={singleCompany}
-                  handleUpVote={() => this.handleUpVote(singleCompany)}
-                  handleDownVote={() => this.handleDownVote(singleCompany)}
-                  handleActiveCompany={() => this.handleActiveCompany(singleCompany)}
-                  handleEditCompany={() => this.handleEditCompany(updatedCompany)}
-                />
-              );
-            })}
+        <CompanyHeader />
+        <div>
+          <div className="text-xs-right">
+            <div>
+              {this.props.company.map((singleCompany) => {
+                return (
+                  <div>
+                    <CompanyItem
+                      key={singleCompany.id}
+                      company={singleCompany}
+                      handleUpVote={() => this.handleUpVote(singleCompany)}
+                      handleDownVote={() => this.handleDownVote(singleCompany)}
+                      handleActiveCompany={() => this.handleActiveCompany(singleCompany)}
+                      handleEditCompany={() => this.handleEditCompany(updatedCompany)}
+                    />
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

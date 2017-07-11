@@ -44,6 +44,7 @@ router.post('/', function(req, res) {
     return res.status(400).end();
   }
   if (_.keys(req.body).length < 1){
+    console.log('turd its a length thing?');
     return res.status(400).end();
   }
   const newCompany = _.assign({ name: '', notes: '', score: 0, url: ''}, req.body);
