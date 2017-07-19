@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm, initialize } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getCompany, editCompany } from '../actions/companies';
+import { getCompany, editCompany, deleteCompany } from '../actions/companies';
 import { Link } from 'react-router';
 
 //render for form fields
@@ -57,7 +57,8 @@ class CompanyEdit extends Component {
 
   render () {
     return (
-      <form onSubmit={ this.onFormSubmit } className="input-group">
+    <div>
+      <form onSubmit={this.onFormSubmit} className="input-group">
              <div className="form-group">
                <label>Name</label>
                <Field name="name" component={renderInput} type="text"/>
@@ -81,8 +82,9 @@ class CompanyEdit extends Component {
                  {name.touched ? name.error : ''}
                </div>
              </div>
-             <button type="submit" className="btn btn-primary">Update Company</button>
+             <button type="submit" className="btn btn-primary btn-md">Update Company</button>
            </form>
+        </div>
     );
   }
 }
@@ -106,6 +108,6 @@ function mapStateToProps({ company, form }) {
 CompanyEdit = reduxForm({
   form: 'CompanyEdit',
   validate
-})(connect( mapStateToProps, { editCompany })(CompanyEdit));
+})(connect( mapStateToProps, { editCompany, deleteCompany })(CompanyEdit));
 
 export default CompanyEdit;

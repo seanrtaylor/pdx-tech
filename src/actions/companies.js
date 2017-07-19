@@ -1,4 +1,4 @@
-import { COMPANIES_URL, GET_COMPANIES, GET_COMPANY, CREATE_COMPANY, UPVOTE_COMPANY, UPDATE_COMPANY  } from '../constants';
+import { COMPANIES_URL, GET_COMPANIES, GET_COMPANY, CREATE_COMPANY, UPVOTE_COMPANY, UPDATE_COMPANY, DELETE_COMPANY  } from '../constants';
 import axios from 'axios';
 
 export const ROOT_URL = 'http://127.0.0.1:3000/companies/'
@@ -58,6 +58,21 @@ export function editCompany(updatedCompany){
         url: `${ROOT_URL}${updatedCompany.id}`
       },
       updatedCompany
+    }
+  };
+}
+
+//delete a company
+export function deleteCompany(deletedCompany){
+  console.log('in delete company action for', deletedCompany);
+  return {
+    type: DELETE_COMPANY,
+    payload: {
+      request: {
+        method: 'DELETE',
+        url: `${ROOT_URL}${deletedCompany.id}`,
+      },
+      deletedCompany: deletedCompany
     }
   };
 }

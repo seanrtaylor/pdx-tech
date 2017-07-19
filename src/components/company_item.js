@@ -35,11 +35,9 @@ export default class CompanyItem extends Component {
     return (
           <Col xs={6} md={4}>
             <div className="company-card">
-              <Link to={`/company/${this.props.company.id}`}>
-                <div className="company-name" onClick={this.props.handleActiveCompany}>
-                  <h4>{this.props.company.name}</h4>
-                </div>
-              </Link>
+              <div className="front">
+              <h4>{this.props.company.name}</h4>
+
 
               <div className="edit-pencil" onClick={this.openEditModal}>
                   <i className="fa fa-pencil" aria-hidden="true"></i> Edit
@@ -58,6 +56,10 @@ export default class CompanyItem extends Component {
                   </div>
                 </div>
               </div>
+              <div className="back">
+
+              </div>
+            </div>
               <Modal show={this.state.showModal} onHide={this.closeEditModal}>
                 <Modal.Header closeButton>
                   <Modal.Title>Details for {this.props.company.name}</Modal.Title>
@@ -67,6 +69,7 @@ export default class CompanyItem extends Component {
                 </Modal.Body>
                 <Modal.Footer>
                   <Button onClick={this.closeEditModal}>Close</Button>
+                  <Button onClick={this.props.handleDeleteCompany} bsStyle="danger">Delete</Button>
                 </Modal.Footer>
               </Modal>
           </Col>
